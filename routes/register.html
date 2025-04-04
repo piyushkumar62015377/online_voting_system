@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System - Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://thumbs.dreamstime.com/b/people-different-religion-showing-voting-finger-general-election-india-illustration-143421500.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+        }
+
+        /* Title Styling */
+        h1 {
+            text-align: center;
+            color: rgb(7, 163, 224); /* Set title color to skyblue */
+            margin-bottom: 20px; /* Add space below the title */
+            font-size: 40px;
+        }
+
+        form {
+            width: 60%;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 1px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        p {
+            text-align: center;
+            font-size: 16px;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Style for Name and Mobile boxes to be in the same line with 1cm distance */
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1cm; /* 1cm distance between the boxes */
+        }
+
+        .input-group input {
+            width: 48%; /* To make sure the boxes are evenly spaced */
+        }
+
+        /* Style for Password, Confirm Password, Gender, and Role (Voter/Admin) boxes on the same line */
+        .password-group, .gender-role-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1cm; /* 1cm distance between the boxes */
+        }
+
+        .password-group input, .gender-role-group select {
+            width: 48%; /* To make sure the boxes are evenly spaced */
+        }
+
+        /* Style for State and City boxes to be in the same line with 1cm distance */
+        .state-city-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1cm; /* 1cm distance between the boxes */
+        }
+
+        .state-city-group select {
+            width: 48%; /* To make sure the boxes are evenly spaced */
+        }
+
+        /* For responsiveness */
+        @media (max-width: 768px) {
+            form {
+                width: 80%;
+            }
+
+            .input-group input, .state-city-group select, .password-group input, .gender-role-group select {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            #state, #city {
+                width: 100%;
+                display: block;
+                margin-top: 10px;
+            }
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <div>
+        <!-- Replacing the "Registration" title with "Online Voting System" in Skyblue -->
+        <h1>Online Voting System</h1>
+
+        <form action="../api/register.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            <!-- Name and Mobile on same line with 1cm distance -->
+            <div class="input-group">
+                <input type="text" id="name" name="name" placeholder="Enter name" required>
+                <input type="text" id="mobile" name="mobile" placeholder="Enter mobile" required>
+            </div>
+
+            <!-- Password and Confirm Password on same line -->
+            <div class="password-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <!-- Date of Birth and Father's Name on the same line -->
+            <div class="input-group">
+                <input type="date" id="dob" name="dob" required>
+                <input type="text" id="father_name" name="father_name" placeholder="Father's Name" required>
+            </div>
+
+            <!-- Gender and Role (Voter/Admin) on the same line -->
+            <div class="gender-role-group">
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <select id="role" name="role" required>
+                    <option value="voter">Voter</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+
+            <!-- Address field -->
+            <input type="text" id="address" name="address" placeholder="Address" required>
+
+            <!-- Election Commission of India field -->
+            <input type="text" id="eci" name="eci" placeholder="Election Commission of India ID" required>
+
+            <input type="file" id="image" name="image" accept="image/*">
+
+            <!-- State and City boxes on the same line with 1cm distance -->
+            <div class="state-city-group">
+                <select id="state" name="state" required>
+                    <option value="">Select State</option>
+                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                    <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Bihar">Bihar</option>
+                    <option value="Chhattisgarh">Chhattisgarh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Haryana">Haryana</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Jharkhand">Jharkhand</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Kerala">Kerala</option>
+                    <option value="Madhya Pradesh">Madhya Pradesh</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Manipur">Manipur</option>
+                    <option value="Meghalaya">Meghalaya</option>
+                    <option value="Mizoram">Mizoram</option>
+                    <option value="Nagaland">Nagaland</option>
+                    <option value="Odisha">Odisha</option>
+                    <option value="Punjab">Punjab</option>
+                    <option value="Rajasthan">Rajasthan</option>
+                    <option value="Sikkim">Sikkim</option>
+                    <option value="Tamil Nadu">Tamil Nadu</option>
+                    <option value="Telangana">Telangana</option>
+                    <option value="Tripura">Tripura</option>
+                    <option value="Uttar Pradesh">Uttar Pradesh</option>
+                    <option value="Uttarakhand">Uttarakhand</option>
+                    <option value="West Bengal">West Bengal</option>
+                </select>
+
+                <select id="city" name="city" required>
+                    <option value="">Select City</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Lucknow">Lucknow</option>
+                    <option value="Kochi">Kochi</option>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Patna">Patna</option>
+                    <option value="Agra">Agra</option>
+                    <option value="Varanasi">Varanasi</option>
+                    <option value="Bhopal">Bhopal</option>
+                    <option value="Visakhapatnam">Visakhapatnam</option>
+                    <option value="Madurai">Madurai</option>
+                    <option value="Vadodara">Vadodara</option>
+                    <option value="Nagpur">Nagpur</option>
+                </select>
+            </div>
+
+            <input type="text" id="aadhaar_number" name="aadhaar_number" placeholder="Enter Aadhaar Number" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p>Already user? <a href="../index.html">Login here</a></p>
+    </div>
+
+    <script>
+        // Function to validate the form before submission
+        function validateForm() {
+            var mobile = document.getElementById("mobile").value;
+            var mobilePattern = /^[0-9]{10}$/; // Mobile number pattern (10 digits)
+            
+            if (!mobile.match(mobilePattern)) {
+                alert("Please enter a valid 10-digit mobile number.");
+                return false; // Prevent form submission
+            }
+
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return false; // Prevent form submission
+            }
+            return true;
+        }
+    </script>
+     <script>
+        function checkPhoneNumber() {
+            var mobile = document.getElementById("mobile").value;
+        
+            // Ensure the field is not empty
+            if (mobile.trim() === "") {
+                return;
+            }
+        
+            // Send an AJAX request to check if the phone number exists
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "check_phone_number.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = xhr.responseText;
+                    if (response === "exists") {
+                        document.getElementById("phone-error").innerText = "This phone number is already registered.";
+                    } else {
+                        document.getElementById("phone-error").innerText = "";
+                    }
+                }
+            };
+            xhr.send("mobile=" + mobile);
+        }
+        </script>
+        
+
+</body>
+</html>  

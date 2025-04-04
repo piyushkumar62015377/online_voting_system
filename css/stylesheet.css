@@ -1,0 +1,48 @@
+body {
+    text-align: center;
+    background-image: url('https://t4.ftcdn.net/jpg/03/01/88/91/360_F_301889163_tHkgenQP5srhNYmMUnOBTCVURCzEaTkK.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+
+#headerSection {
+    padding: 5px;
+}
+
+
+#headerSection h1 {
+    font-family: Cursive;
+}
+
+
+input {
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+#dropbox {
+    padding: 10px;
+    border-radius: 5px;
+    width: 185px;
+}
+
+
+#loginbtn {
+    padding: 10px;
+    font-size: 15px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    width: 90px;
+    
+}
+
+
+#registerbtn{
+    padding: 10px;
+    border-radius: 5px;
+    width: 185px;
+}
